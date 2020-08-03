@@ -51,13 +51,13 @@ public class Main {
         }
     public static void main(String[] args) {
 
-        panel.setPreferredSize(new Dimension(500,500));
+        panel.setPreferredSize(new Dimension(500,400));
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setContentPane(panel);
         frame.pack();
         frame.setLocationRelativeTo(null);
-        frame.setResizable(true);
+        frame.setResizable(false);
         panel.setBackground(Color.WHITE);
         frame.setVisible(true);
         panel.repaint();
