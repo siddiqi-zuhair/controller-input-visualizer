@@ -27,11 +27,21 @@ public class Main {
     public static float lefty;
     public static float rightx;
     public static float righty;
+    public static float ltrigger;
+    public static float rtrigger;
+
     private static void init() {
         try {
             controllerManager = new SDL2ControllerManager();
             controller = (SDL2Controller) controllerManager.getControllers().get(0);
             while (loop) {
+                PointerInfo a = MouseInfo.getPointerInfo();
+                Point b = a.getLocation();
+
+                double mousex = b.getX();
+                double mousey = b.getY();
+                System.out.println("Mouse X: " + mousex);
+                System.out.println("Mouse Y: " +mousey);
                 controllerManager.pollState();
                 String strPower = controller.getPowerLevel().toString();
                 System.out.println(strPower);
@@ -39,11 +49,14 @@ public class Main {
                  lefty = controller.getAxis(1);
                  rightx = controller.getAxis(2);
                  righty = controller.getAxis(3);
-                System.out.println("Left X: " +leftx);
-                System.out.println("Left Y: "+lefty);
-                System.out.println("Right X: "+rightx);
-                System.out.println("Right Y: "+righty);
-                System.out.println(controller.getPov(0));
+                 ltrigger = controller.getAxis(4);
+                 rtrigger = controller.getAxis(5);
+                //System.out.println(ltrigger);
+           //     System.out.println("Left X: " +leftx);
+              //  System.out.println("Left Y: "+lefty);
+                //System.out.println("Right X: "+rightx);
+               // System.out.println("Right Y: "+righty);
+               // System.out.println(controller.getPov(0));
                 panel.repaint();
             }
         }catch(SDL_Error e) {
@@ -51,12 +64,12 @@ public class Main {
         }
     public static void main(String[] args) {
 
-        panel.setPreferredSize(new Dimension(500,400));
+        panel.setPreferredSize(new Dimension(500,370));
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setContentPane(panel);
         frame.pack();
-        frame.setLocationRelativeTo(null);
+
         frame.setResizable(false);
         panel.setBackground(Color.WHITE);
         frame.setVisible(true);
