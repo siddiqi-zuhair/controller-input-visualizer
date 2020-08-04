@@ -5,6 +5,8 @@ import java.net.URL;
 
 public class BoardPanel extends JPanel {
     ImageIcon controller = new ImageIcon();
+    ImageIcon leftbumper = new ImageIcon();
+    ImageIcon rightbumper = new ImageIcon();
     public void paintComponent (Graphics g) {
         super.paintComponent(g);
 
@@ -38,17 +40,30 @@ public class BoardPanel extends JPanel {
             g.fillRect(167, 165, 27, 30);
             g.fillRect(197, 195, 27, 30);
         }
+        if (Main.controller.getButton(0)) {
+            g.fillOval(367, 143, 30, 30);
+            g.setColor(Color.GREEN);
+            g.drawString("A",379,162);
+            g.setColor(Color.BLACK);
+        }
         if (Main.controller.getButton(1)) {
             g.fillOval(400, 110, 30, 30);
-        }
-        if (Main.controller.getButton(0)) {
-            g.fillOval(367, 145, 30, 30);
+            g.setColor(Color.RED);
+            g.drawString("B",413,129);
+            g.setColor(Color.BLACK);
+
         }
         if (Main.controller.getButton(2)) {
             g.fillOval(333, 110, 30, 30);
+            g.setColor(Color.CYAN);
+            g.drawString("X",346,129);
+            g.setColor(Color.BLACK);
         }
         if (Main.controller.getButton(3)) {
             g.fillOval(368, 74, 30, 30);
+            g.setColor(Color.YELLOW);
+            g.drawString("Y",379,93);
+            g.setColor(Color.BLACK);
         }
         if (Main.controller.getButton(4)) {
             g.fillOval(195 - 9, 158 - 43, 20, 20);
@@ -67,12 +82,20 @@ public class BoardPanel extends JPanel {
             g.setColor(Color.WHITE);
             g.drawString("RS", 324 - 9, 360 - 43);
         }
+        if(Main.controller.getButton(9)){
+            g.drawImage(leftbumper.getImage(), 62-8, 49-33, null);
+        }
+        if(Main.controller.getButton(10)){
+            g.drawImage(rightbumper.getImage(), 305-8, 49-33, null);
+        }
 
         }
     BoardPanel(){
         super();
         try {
-            controller = new ImageIcon(new URL("https://i.imgur.com/KdEBQMA.png"));
+            controller = new ImageIcon(new URL("https://i.imgur.com/ebt6Rxk.png"));
+            leftbumper = new ImageIcon(new URL("https://i.imgur.com/4pMtOND.png"));
+            rightbumper = new ImageIcon(new URL("https://i.imgur.com/oInlRrI.png"));
         }catch(MalformedURLException e) {
         }
         }

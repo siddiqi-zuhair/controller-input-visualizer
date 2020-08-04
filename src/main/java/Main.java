@@ -40,11 +40,11 @@ public class Main {
 
                 double mousex = b.getX();
                 double mousey = b.getY();
-                System.out.println("Mouse X: " + mousex);
-                System.out.println("Mouse Y: " +mousey);
+            //    System.out.println("Mouse X: " + mousex);
+              //  System.out.println("Mouse Y: " +mousey);
                 controllerManager.pollState();
                 String strPower = controller.getPowerLevel().toString();
-                System.out.println(strPower);
+                //System.out.println(strPower);
                  leftx = controller.getAxis(0);
                  lefty = controller.getAxis(1);
                  rightx = controller.getAxis(2);
@@ -64,7 +64,7 @@ public class Main {
         }
     public static void main(String[] args) {
 
-        panel.setPreferredSize(new Dimension(500,370));
+        panel.setPreferredSize(new Dimension(495,370));
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setContentPane(panel);
