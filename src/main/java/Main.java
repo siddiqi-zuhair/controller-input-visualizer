@@ -12,6 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -23,7 +24,9 @@ public class Main extends Component implements ActionListener {
     public static JMenuBar optionBar  = new JMenuBar();
     public static JMenu optionsMenu = new JMenu("Options");
     public static JMenuItem colorChooser = new JMenuItem("Color Chooser");
-
+    public static JMenu controllerMenu = new JMenu("Controller Type");
+    public static JMenuItem xboxoneControlleritem = new JMenuItem("Xbox One");
+    public static JMenuItem ps4Controlleritem = new JMenuItem("PS4");
     public static SDL2ControllerManager controllerManager;
     public static SDL2Controller controller;
 
@@ -37,7 +40,8 @@ public class Main extends Component implements ActionListener {
     Color initColor = Color.WHITE;
     Color bgColor = Color.WHITE;
 
-    public static String controllerType;
+    public static String controllerType = "Fart";
+    public static String controllerPref = "Fart";
     public Timer time = new Timer(1000/60, this);
 
     public  void actionPerformed(ActionEvent evt) {
@@ -49,8 +53,8 @@ public class Main extends Component implements ActionListener {
 
                 double mousex = b.getX();
                 double mousey = b.getY();
-                //    System.out.println("Mouse X: " + mousex);
-                //  System.out.println("Mouse Y: " +mousey);
+                System.out.println("Mouse X: " + mousex);
+                System.out.println("Mouse Y: " + mousey);
                 controllerManager.pollState();
                 String strPower = controller.getPowerLevel().toString();
                 System.out.println(controller.getPlayerIndex());
@@ -75,21 +79,41 @@ public class Main extends Component implements ActionListener {
         if (evt.getSource() == colorChooser) {
             bgColor = JColorChooser.showDialog(this, "Pick a background color", initColor);
             panel.setBackground(bgColor);
+        } else if (evt.getSource() == xboxoneControlleritem) {
+            controllerPref = "XBOXONE";
+            System.out.println(controllerType);
+            time.stop();
+            time.start();
+        } else if (evt.getSource() == ps4Controlleritem) {
+            controllerPref = "PS4";
+            System.out.println(controllerType);
+            time.stop();
+            time.start();
         }
     }
+    public void windowClosinng(WindowEvent evt){
+
+    }
         public Main(){
-                panel.setPreferredSize(new Dimension(495,400));
+                panel.setPreferredSize(new Dimension(515,400));
                 panel.setLayout(null);
                 optionBar.setLocation(0,0);
-                optionBar.setSize(495,15);
+                optionBar.setSize(515,15);
                 optionBar.add(optionsMenu);
                 optionsMenu.add(colorChooser);
                 panel.add(optionBar);
+                panel.add(controllerMenu);
+                optionBar.add(controllerMenu);
+                controllerMenu.add(xboxoneControlleritem);
+                controllerMenu.add(ps4Controlleritem);
                 colorChooser.addActionListener(this);
+                xboxoneControlleritem.addActionListener(this);
+                ps4Controlleritem.addActionListener(this);
 
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setContentPane(panel);
                 frame.pack();
+                panel.setBackground(initColor);
 
                 frame.setResizable(false);
                 frame.setVisible(true);
@@ -98,7 +122,6 @@ public class Main extends Component implements ActionListener {
                 controller = (SDL2Controller) controllerManager.getControllers().get(0);
                 controllerType = controller.getType().toString();
                 time.start();
-
             }
     public static void main(String[] args) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
         UIManager.setLookAndFeel( UIManager.getSystemLookAndFeelClassName()); //setLookandFeel for modern Windows 10 look on buttons and other JComponents
