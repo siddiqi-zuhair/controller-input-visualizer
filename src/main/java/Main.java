@@ -1,10 +1,4 @@
-import com.badlogic.gdx.controllers.Controller;
-import com.badlogic.gdx.controllers.ControllerListener;
-import com.badlogic.gdx.controllers.PovDirection;
-import com.badlogic.gdx.math.Vector3;
-import org.libsdl.SDL;
 import org.libsdl.SDL_Error;
-import org.libsdl.SDL_GameController;
 import uk.co.electronstudio.sdl2gdx.SDL2Controller;
 import uk.co.electronstudio.sdl2gdx.SDL2ControllerManager;
 
@@ -13,9 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.Arrays;
+
 
 
 public class Main extends Component implements ActionListener {
