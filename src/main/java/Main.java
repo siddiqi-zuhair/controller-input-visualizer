@@ -47,17 +47,13 @@ public class Main extends Component implements ActionListener {
     public  void actionPerformed(ActionEvent evt) {
         if (evt.getSource() == time) {
             try {
-                System.out.println(controllerType);
                 PointerInfo a = MouseInfo.getPointerInfo();
                 Point b = a.getLocation();
 
                 double mousex = b.getX();
                 double mousey = b.getY();
-                System.out.println("Mouse X: " + mousex);
-                System.out.println("Mouse Y: " + mousey);
                 controllerManager.pollState();
                 String strPower = controller.getPowerLevel().toString();
-                System.out.println(controller.getPlayerIndex());
                 ;
                 //System.out.println(strPower);
                 leftx = controller.getAxis(0);
@@ -81,12 +77,10 @@ public class Main extends Component implements ActionListener {
             panel.setBackground(bgColor);
         } else if (evt.getSource() == xboxoneControlleritem) {
             controllerPref = "XBOXONE";
-            System.out.println(controllerType);
             time.stop();
             time.start();
         } else if (evt.getSource() == ps4Controlleritem) {
             controllerPref = "PS4";
-            System.out.println(controllerType);
             time.stop();
             time.start();
         }
