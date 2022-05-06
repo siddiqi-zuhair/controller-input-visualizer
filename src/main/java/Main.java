@@ -104,10 +104,15 @@ public class Main extends Component implements ActionListener {
                 frame.setResizable(false);
                 frame.setVisible(true);
                 panel.repaint();
+            try{
                 controllerManager = new SDL2ControllerManager(SDL2ControllerManager.InputPreference.XINPUT);
                 controller = (SDL2Controller) controllerManager.getControllers().get(0);
                 controllerType = controller.getType().toString();
+                System.out.println(controllerType); 
                 time.start();
+            }catch(IndexOutOfBoundsException e){
+                // panel.add(new J)
+            }
             }
     public static void main(String[] args) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
         UIManager.setLookAndFeel( UIManager.getSystemLookAndFeelClassName()); //setLookandFeel for modern Windows 10 look on buttons and other JComponents
